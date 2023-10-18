@@ -29,12 +29,21 @@ module.exports = {
   assetsDir: 'static',
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
-  devServer: {
-    port: port,
-    open: true,
-    overlay: {
-      warnings: false,
-      errors: true
+  // devServer: {
+  //   port: port,
+  //   open: true,
+  //   overlay: {
+  //     warnings: false,
+  //     errors: true
+  //   },
+  //   before: require('./mock/mock-server.js')
+  // },
+  devServer:{
+    proxy:{
+      '/api': {
+        target: 'http://gmall-h5-api.atguigu.cn',
+        pathRewrite: {'^/api': ''}
+      }
     },
     before: require('./mock/mock-server.js')
   },

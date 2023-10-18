@@ -35,6 +35,18 @@ Vue.use(ElementUI, { locale })
 
 Vue.config.productionTip = false
 
+// 在Vue原型对象上绑定 接口 ，在所有组件上都可以使用
+import API from '@/api/index'
+Vue.prototype.$API = API
+
+// 注册全局组件： 三级联动菜单
+import CatogorySelect from '@/components/CatogorySelect'
+Vue.component(CatogorySelect.name,CatogorySelect)
+
+// 注册全局组件： HintButton
+import HintButton from '@/components/HintButton'
+Vue.component(HintButton.name,HintButton)
+
 new Vue({
   el: '#app',
   router,
